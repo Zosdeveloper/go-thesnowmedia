@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CaretDown } from '@phosphor-icons/react'
+import { Plus, Minus } from '@phosphor-icons/react'
 
 interface FAQItem {
   question: string
@@ -14,60 +14,55 @@ interface FAQProps {
 }
 
 export default function FAQ({ items }: FAQProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
-      {items.map((item, i) => (
-        <motion.div
-          key={i}
-          className={`border-b border-zinc-800/70 transition-colors duration-300 ${
-            openIndex === i ? 'bg-zinc-900/30 -mx-4 px-4 rounded-xl border-transparent' : ''
-          }`}
-        >
-          <button
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full flex items-center justify-between py-6 text-left cursor-pointer group"
-          >
-            <span
-              className={`text-lg font-semibold pr-8 transition-colors duration-200 ${
-                openIndex === i
-                  ? 'text-brand-gold'
-                  : 'text-white group-hover:text-brand-gold'
-              }`}
+    <div className="w-full max-w-3xl mx-auto divide-y divide-black/10 border-y border-black/10">
+      {items.map((item, i) => {
+        const open = openIndex === i
+        return (
+          <div key={i}>
+            <button
+              onClick={() => setOpenIndex(open ? null : i)}
+              className="w-full flex items-center justify-between py-6 text-left cursor-pointer group"
             >
-              {item.question}
-            </span>
-            <motion.div
-              animate={{ rotate: openIndex === i ? 180 : 0 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            >
-              <CaretDown
-                size={20}
-                weight="bold"
-                className={`shrink-0 transition-colors duration-200 ${
-                  openIndex === i ? 'text-brand-gold' : 'text-zinc-500'
+              <span
+                className={`font-display font-extrabold text-lg md:text-xl pr-8 transition-colors duration-200 ${
+                  open ? 'text-brand-maroon' : 'text-brand-ink group-hover:text-brand-maroon'
                 }`}
-              />
-            </motion.div>
-          </button>
-          <AnimatePresence>
-            {openIndex === i && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-                className="overflow-hidden"
               >
-                <p className="pb-6 text-zinc-400 leading-relaxed max-w-[65ch]">
-                  {item.answer}
-                </p>
+                {item.question}
+              </span>
+              <motion.div
+                animate={{ rotate: open ? 180 : 0 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+                className="shrink-0"
+              >
+                {open ? (
+                  <Minus size={22} weight="bold" className="text-brand-maroon" />
+                ) : (
+                  <Plus size={22} weight="bold" className="text-brand-ink/60" />
+                )}
               </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      ))}
+            </button>
+            <AnimatePresence>
+              {open && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ type: 'spring', stiffness: 180, damping: 26 }}
+                  className="overflow-hidden"
+                >
+                  <p className="pb-6 text-brand-ink/75 text-base md:text-lg leading-relaxed max-w-[65ch]">
+                    {item.answer}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )
+      })}
     </div>
   )
 }
