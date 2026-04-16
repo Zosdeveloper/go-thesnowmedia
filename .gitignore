@@ -8,5 +8,8 @@ out/
 *.png
 *.yaml
 .playwright-cli/
+.claude/
+research/*.json
+research/*.html
 bing-results.yaml
 coaching_page.yaml
