@@ -1,12 +1,18 @@
 'use client'
 
-import CTAButton from '@/components/CTAButton'
-import VideoEmbed from '@/components/VideoEmbed'
+import AttentionBar from '@/components/brunson/AttentionBar'
+import BrunsonHero from '@/components/brunson/BrunsonHero'
+import BrunsonCTABand from '@/components/brunson/BrunsonCTABand'
+import QuoteHeadline from '@/components/brunson/QuoteHeadline'
+import StoryBlock from '@/components/brunson/StoryBlock'
+import ProofBadges from '@/components/brunson/ProofBadges'
+import AccentHeadline from '@/components/brunson/AccentHeadline'
+import EventBlock from '@/components/brunson/EventBlock'
+import Signoff from '@/components/brunson/Signoff'
+import Footer from '@/components/brunson/Footer'
 import FAQ from '@/components/FAQ'
-import SocialProofCard from '@/components/SocialProofCard'
-import AnimatedSection from '@/components/AnimatedSection'
 import ExitIntentPopup from '@/components/ExitIntentPopup'
-import StatsBar from '@/components/StatsBar'
+import CTAButton from '@/components/CTAButton'
 import { motion } from 'framer-motion'
 import { CheckCircle, XCircle } from '@phosphor-icons/react'
 
@@ -38,29 +44,6 @@ const faqItems = [
   },
 ]
 
-const mechanisms = [
-  {
-    name: 'The 60-Second First Touch',
-    description:
-      'Every inquiry gets a response in under 60 seconds, 24 hours a day, 7 days a week. Your prospects never wait.',
-  },
-  {
-    name: 'The Calendar Gatekeeper',
-    description:
-      'Filters tire-kickers before they reach your calendar. Only qualified prospects who match your criteria book time with you.',
-  },
-  {
-    name: 'The Persistent Pipeline',
-    description:
-      'Email, SMS, and chat follow-up runs automatically until the prospect books or opts out. Persistent without being pushy.',
-  },
-  {
-    name: 'The Growth Scoreboard',
-    description:
-      "Weekly lead quality scoring and conversion tracking. See exactly what's driving revenue and what needs to change.",
-  },
-]
-
 const beforeItems = [
   'Leads fill out your form and hear back 4 to 8 hours later',
   'Discovery calls dry up when you stop posting or running ads',
@@ -77,16 +60,25 @@ const afterItems = [
   'Dashboard shows lead quality, source, and conversion data',
 ]
 
-const stats = [
-  { value: '100+', label: 'Businesses Served' },
-  { value: '6 YRS', label: 'Running Campaigns' },
-  { value: '60 SEC', label: 'Avg Response Time' },
-  { value: '3x', label: 'Avg Pipeline Lift' },
-]
+const IMG = {
+  heroBg: 'https://picsum.photos/seed/consultant-stage-audience/1920/1080',
+  teamCta: 'https://picsum.photos/seed/consultant-laptop-cafe/1200/1000',
+  milosPortrait: 'https://i.pravatar.cc/400?img=52',
+  milosWide: 'https://picsum.photos/seed/milos-working-desk/900/1100',
+  storyEmptyCalendar:
+    'https://picsum.photos/seed/empty-calendar-planner/900/1100',
+  storyLeadGhost: 'https://picsum.photos/seed/leads-inbox-ghost/900/1100',
+  storyOneEmail: 'https://picsum.photos/seed/single-email-screen/900/1100',
+  mech1: 'https://picsum.photos/seed/instant-reply-automation/1100/900',
+  mech2: 'https://picsum.photos/seed/calendar-qualifier-gate/1100/900',
+  mech3: 'https://picsum.photos/seed/multichannel-pipeline/1100/900',
+  mech4: 'https://picsum.photos/seed/consultant-scoreboard-kpi/1100/900',
+  proofBg: 'https://picsum.photos/seed/consultant-mastermind-room/1920/1080',
+}
 
 export default function ConsultantsPage() {
   return (
-    <main className="bg-white text-brand-ink font-body overflow-x-hidden">
+    <main className="bg-white text-brand-ink font-sans overflow-x-hidden">
       <ExitIntentPopup
         guideName="Free Guide"
         headline="Not Ready for a Call?"
@@ -94,335 +86,319 @@ export default function ConsultantsPage() {
         ctaText="Send It"
       />
 
-      {/* ─── HERO (dark) ──────────────────────────────────────────── */}
-      <section className="relative hero-grain bg-brand-ink text-white overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none opacity-70"
-          style={{
-            background:
-              'radial-gradient(900px 600px at 20% 20%, rgba(232,182,76,0.08), transparent 60%), radial-gradient(700px 500px at 90% 80%, rgba(15,87,69,0.22), transparent 60%)',
-          }}
-        />
+      <AttentionBar>
+        Attention: We Partner With Only 3 New Consultants Per Month &mdash; Only 3 Spots Left For May
+      </AttentionBar>
 
-        <div className="relative z-10 border-b border-white/10 bg-black/40">
-          <div className="max-w-6xl mx-auto px-6 py-3 text-center text-[11px] md:text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold">
-            Attention coaches &amp; consultants doing $500K+ per year
-          </div>
-        </div>
+      <BrunsonHero
+        preHeadline="For Coaches &amp; Consultants Doing $500K+ Per Year"
+        headline={
+          <>
+            How Consultants Are Filling Their <br className="hidden md:block" />
+            Calendar With Qualified Calls
+          </>
+        }
+        accentHeadline="Without Posting, Emailing, Or Chasing A Single Lead"
+        subline="Discover the system that turns your existing lead flow into a fully booked calendar. Responds in 60 seconds, qualifies automatically, books while you sleep."
+        ctaText="Apply To See If You Qualify"
+        ctaSubline="I am looking for fast action takers — 3 spots left for May"
+        ctaHref="/apply"
+        bgImage={IMG.heroBg}
+      />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7">
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55 }}
-                className="font-display font-extrabold tracking-tightest text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] text-white"
-              >
-                How Consultants Are Filling Their Calendar With{' '}
-                <span className="brunson-highlight">Qualified Calls</span>{' '}
-                Without Posting, Emailing, Or Chasing A Single Lead
-              </motion.h1>
+      <BrunsonCTABand
+        preline="If That's You..."
+        headline="Apply Below And Let's Fill Your Calendar With Qualified Calls."
+        ctaText="Apply For The Growth System Now"
+        ctaSubline="Only 3 Consultant Spots Open — Act Now Before They're Gone"
+        ctaHref="/apply"
+        photo={IMG.teamCta}
+        photoAlt="Consultant taking a qualified discovery call"
+      />
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-lg md:text-xl text-white/75 mt-8 max-w-[58ch] leading-relaxed"
-              >
-                Discover the system that turns your existing lead flow into a
-                fully booked calendar. Responds in 60 seconds, qualifies
-                automatically, books while you sleep. Setup takes 30 minutes.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-10"
-              >
-                <CTAButton
-                  text="See If You Qualify"
-                  href="/apply"
-                  subtext="Only 3 Consultant Spots Open For May"
-                />
-              </motion.div>
+      {/* ─── PROBLEM ──────────────────────────────────────────────── */}
+      <section className="bg-white py-20 md:py-28 px-6">
+        <div className="space-y-20 md:space-y-28">
+          <div>
+            <div className="mb-10 md:mb-14">
+              <QuoteHeadline>
+                Your Close Rate Is Strong. Your Calendar Isn&rsquo;t.
+              </QuoteHeadline>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-5"
+            <StoryBlock
+              photo={IMG.storyEmptyCalendar}
+              photoAlt="Empty weekly calendar"
+              caption="Strong closers with empty calendars is the single biggest pattern in consulting."
             >
-              <VideoEmbed />
-              <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold/90 mt-4">
-                Watch: 2 Min Breakdown
+              <p
+                className="italic text-brand-ink/70 text-lg border-l-4 border-brand-gold pl-5"
+              >
+                &ldquo;You are not a marketing problem. You are a speed
+                problem.&rdquo;
+                <span className="block mt-2 text-sm text-brand-ink/50 not-italic">
+                  &mdash; Alex Hormozi, Acquisition.com
+                </span>
               </p>
-            </motion.div>
+              <p>
+                You know your close rate on discovery calls is strong. 30%,
+                maybe 40%. The bottleneck is not your offer or your sales
+                ability.
+              </p>
+              <p>
+                The bottleneck is getting enough qualified people on those
+                calls every single week. When you stop posting, emailing, or
+                running ads, the pipeline dries up instantly.
+              </p>
+              <p className="font-display font-bold text-brand-ink text-xl">
+                You&apos;re not an execution problem. You&apos;re a pipeline problem.
+              </p>
+            </StoryBlock>
+          </div>
+
+          <div>
+            <div className="mb-10 md:mb-14">
+              <QuoteHeadline>
+                10 Minutes Is The Difference Between A Client And A Ghost.
+              </QuoteHeadline>
+            </div>
+            <StoryBlock
+              photo={IMG.storyLeadGhost}
+              photoAlt="Inbox with unread leads"
+              reversed
+              caption="Every minute past the 10-minute mark, your close probability halves."
+            >
+              <p>
+                Every lead that fills out your form and does not hear back in
+                10 minutes is 5x less likely to book a call. Your VA checks
+                the inbox at 2pm. By then, the prospect booked with someone
+                who responded at 9:01am.
+              </p>
+              <p>
+                Speed of response is not a detail. In high-ticket consulting,
+                it&apos;s the single biggest predictor of close rate.
+              </p>
+              <p className="font-display font-bold text-brand-ink text-xl">
+                The consultant who responds first wins the client. Every time.
+              </p>
+            </StoryBlock>
+          </div>
+
+          <div>
+            <div className="mb-10 md:mb-14">
+              <QuoteHeadline>One Follow-Up Is Not A System.</QuoteHeadline>
+            </div>
+            <StoryBlock
+              photo={IMG.storyOneEmail}
+              photoAlt="Single follow-up email on screen"
+              caption="The fifth follow-up is where the sale happens. Most consultants stop at one."
+            >
+              <p>
+                You&apos;re paying for ads or spending hours on content, but the
+                leads that come in get one follow-up email and then nothing.
+              </p>
+              <p>
+                The money is not in the first touch. It is in the fifth.
+                Nobody buys high-ticket consulting off of one email. They buy
+                because you stayed in their inbox long enough to be the
+                obvious answer when they were ready.
+              </p>
+              <p className="font-display font-bold text-brand-ink text-xl">
+                Persistence is the entire game.
+              </p>
+            </StoryBlock>
           </div>
         </div>
       </section>
 
-      {/* ─── STATS BAR ───────────────────────────────────────────── */}
-      <StatsBar stats={stats} theme="light" />
-
-      {/* ─── PROBLEM AGITATION ───────────────────────────────────── */}
-      <AnimatedSection className="bg-white py-24 md:py-32 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-brand-maroon text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-            Part One
-          </p>
-          <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-brand-ink mb-4">
-            The Pipeline Problem Nobody Talks About
-          </h2>
-          <hr className="rule-gold my-8" />
-
-          <div className="space-y-14 md:space-y-20">
-            {[
-              {
-                num: '01',
-                title: 'Your Close Rate Is Strong. Your Calendar Isn\u2019t.',
-                body:
-                  'You know your close rate on discovery calls is strong. 30%, maybe 40%. The bottleneck is not your offer or your sales ability. It is getting enough qualified people on those calls every week. When you stop posting, emailing, or running ads for a week, the pipeline dries up instantly.',
-              },
-              {
-                num: '02',
-                title: '10 Minutes Is The Difference Between A Client And A Ghost',
-                body:
-                  'Every lead that fills out a form and does not hear back in 10 minutes is 5x less likely to book a call. Your VA checks the inbox at 2pm. By then, the prospect booked with someone who responded at 9:01am.',
-              },
-              {
-                num: '03',
-                title: 'One Follow-Up Is Not A System',
-                body:
-                  'You are paying for ads or spending hours on content, but the leads that come in get one follow-up email and then nothing. The money is not in the first touch. It is in the fifth.',
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ type: 'spring', stiffness: 80, damping: 20, delay: i * 0.05 }}
-                className="grid grid-cols-[auto,1fr] gap-6 md:gap-10 items-start"
-              >
-                <span className="font-display font-extrabold text-5xl md:text-6xl text-brand-gold/60 leading-none tabular-nums select-none">
-                  {item.num}
-                </span>
-                <div>
-                  <h3 className="font-display font-extrabold text-2xl md:text-3xl text-brand-ink mb-4 leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-brand-ink/75 text-base md:text-lg leading-relaxed max-w-[60ch]">
-                    {item.body}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* ─── EPIPHANY / STORY ─────────────────────────────────────── */}
+      <section className="bg-brand-paper py-20 md:py-28 px-6">
+        <div className="mb-10 md:mb-14">
+          <QuoteHeadline size="xl">
+            Strong Closers. Empty Calendars. I Saw The Same Pattern Everywhere.
+          </QuoteHeadline>
         </div>
-      </AnimatedSection>
 
-      {/* ─── EPIPHANY BRIDGE ─────────────────────────────────────── */}
-      <AnimatedSection className="bg-brand-paper py-24 md:py-32 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-brand-maroon text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-            A Note From Milos
+        <StoryBlock
+          photo={IMG.milosWide}
+          photoAlt="Milos at work"
+          caption="Milos, Founder of The Snow Media — Eagle, Idaho"
+        >
+          <p className="text-sm uppercase tracking-[0.2em] text-brand-ink/55 font-bold">
+            From: Milos &middot; Eagle, Idaho
           </p>
-          <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-brand-ink mb-4">
-            &ldquo;Strong Closers. Empty Calendars. I Saw The Same Pattern Everywhere.&rdquo;
-          </h2>
-          <hr className="rule-gold my-8" />
-
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-16 h-16 rounded-full bg-brand-maroon flex items-center justify-center shrink-0 border-2 border-white shadow-md">
-              <span className="text-white font-display font-extrabold text-xl">
-                M
-              </span>
-            </div>
-            <div>
-              <p className="text-brand-ink font-display font-extrabold text-lg">
-                Milos
-              </p>
-              <p className="text-brand-ink/55 text-sm">
-                Founder, Snow Media
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-5 text-brand-ink/85 leading-relaxed text-lg md:text-xl border-l-[3px] border-brand-gold pl-6 md:pl-8">
-            <p>
-              Over the past six years, I&apos;ve managed lead generation
-              campaigns for over 100 businesses, including coaches,
-              consultants, and service providers across three countries.
-            </p>
-            <p>
-              Here&apos;s what I kept seeing: strong closers with empty
-              calendars. Consultants who closed 30 to 40% of their discovery
-              calls, but only had 3 to 4 calls a week. The ads were working.
-              The leads were filling out forms. But by the time someone
-              responded, the prospect had already moved on.
-            </p>
-            <p>
-              I started tracking response times across our client base. The
-              pattern was undeniable: the consultant who responded first won
-              the client. Not the best consultant, not the cheapest. The
-              fastest. Most of our clients were responding in 4 to 8 hours.
-              Their competitors were responding in minutes.
-            </p>
-            <p className="text-brand-ink font-display font-extrabold text-xl md:text-2xl leading-snug">
-              That&apos;s when I built The Growth System. Not more ads. Not
-              a better CRM. A system that responds to every lead in under 60
-              seconds, qualifies them, and books the call. Before your VA
-              even opens the inbox.
-            </p>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ─── BIG DOMINO ──────────────────────────────────────────── */}
-      <AnimatedSection className="bg-white py-20 md:py-28 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-brand-maroon text-xs font-semibold uppercase tracking-[0.25em] mb-6">
-            The One Thing
+          <p>
+            Over the past six years, I&apos;ve managed lead generation
+            campaigns for over 100 businesses, including coaches,
+            consultants, and service providers across three countries.
           </p>
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-            className="font-display font-extrabold text-[clamp(1.6rem,3.2vw,2.5rem)] leading-[1.2] text-brand-ink"
+          <p>
+            Here&apos;s what I kept seeing: strong closers with empty
+            calendars. Consultants who closed 30 to 40% of their discovery
+            calls, but only had three or four calls a week. The ads were
+            working. The leads were filling out forms. But by the time
+            someone responded, the prospect had already moved on.
+          </p>
+          <p>
+            I started tracking response times across our client base. The
+            pattern was undeniable: the consultant who responded first won
+            the client. Not the best consultant, not the cheapest. The
+            fastest. Most were responding in 4 to 8 hours. Their competitors
+            were responding in minutes.
+          </p>
+          <p className="font-display font-extrabold text-brand-ink text-xl md:text-2xl leading-snug">
+            That&apos;s when I built The Growth System. Not more ads. Not a
+            better CRM. A system that responds to every lead in under 60
+            seconds, qualifies them, and books the call. Before your VA even
+            opens the inbox.
+          </p>
+        </StoryBlock>
+      </section>
+
+      {/* ─── BIG DOMINO ───────────────────────────────────────────── */}
+      <section className="bg-white py-20 md:py-24 px-6">
+        <AccentHeadline
+          gold="The coaches scaling past $1M all have one thing in common."
+          black="They removed themselves from lead generation entirely. AI handles the first touch, the follow-up, and the qualification. The coach only shows up when someone is ready to buy."
+        />
+      </section>
+
+      {/* ─── PROOF ────────────────────────────────────────────────── */}
+      <ProofBadges
+        headline="Proof! Look At The Results Our Consulting Clients Are Booking."
+        subhead="Exact numbers pulled from live campaign dashboards — not the marketing deck."
+        badges={[
+          { value: '100+', label: 'Businesses Partnered With' },
+          { value: '24%', label: 'Lead Lift (Elevated Diversity)' },
+          { value: '37%', label: 'Booking Boost (Waxxpot)' },
+          { value: '21%', label: 'Volume Growth (HBOT)' },
+        ]}
+        footerLine="That isn't to brag. It's proof that when the system responds in 60 seconds and follows up until they book, qualified calls land on the calendar whether you show up or not."
+        ctaText="Apply For The Growth System Now"
+        ctaSubline="Only 3 Consultant Spots Open For May"
+        ctaHref="/apply"
+        bgImage={IMG.proofBg}
+      />
+
+      {/* ─── "A RISING TIDE" EQUIVALENT ───────────────────────────── */}
+      <section className="bg-brand-paper py-20 md:py-24 px-6">
+        <AccentHeadline
+          gold="A rising tide lifts all boats."
+          black="Here's exactly what you get when you plug The Growth System into your practice."
+        />
+      </section>
+
+      {/* ─── MECHANISMS ───────────────────────────────────────────── */}
+      <section className="bg-white py-16 md:py-20 px-6">
+        <div className="space-y-24 md:space-y-32">
+          <EventBlock
+            label="Component #1"
+            title="The 60-Second First Touch"
+            photo={IMG.mech1}
+            photoAlt="Instant AI response system"
           >
-            The coaches scaling past $1M all have one thing in common. They
-            removed themselves from lead generation entirely. AI handles the
-            first touch, the follow-up, and the qualification. The coach
-            only shows up when someone is{' '}
-            <span className="text-brand-maroon">ready to buy</span>.
-          </motion.p>
-          <hr className="rule-gold mx-auto mt-10" />
-        </div>
-      </AnimatedSection>
+            <p>
+              Every inquiry that hits your form, chat, or inbox gets a
+              response in under 60 seconds. Personalized. Contextual. In
+              your voice, not a canned auto-reply.
+            </p>
+            <p>
+              Your prospects never wait. The speed alone wins 30 to 50% of
+              the deals that used to slip to competitors with 9-to-5 VAs.
+            </p>
+            <p className="font-display font-bold text-brand-ink">
+              Fastest consultant wins. Every time.
+            </p>
+          </EventBlock>
 
-      {/* ─── SOCIAL PROOF ────────────────────────────────────────── */}
-      <AnimatedSection className="bg-brand-paper py-24 md:py-32 px-6">
+          <EventBlock
+            label="Component #2"
+            title="The Calendar Gatekeeper"
+            photo={IMG.mech2}
+            photoAlt="Lead qualification engine"
+            reversed
+          >
+            <p>
+              Before anything hits your calendar, the system qualifies the
+              lead against your exact criteria: revenue, industry, readiness
+              to invest, alignment with your offer.
+            </p>
+            <p>
+              Tire-kickers get filtered out with a polite, helpful
+              deflection. Only prospects who match your ideal client profile
+              make it to your schedule.
+            </p>
+            <p className="font-display font-bold text-brand-ink">
+              No more Mondays wasted on unqualified calls.
+            </p>
+          </EventBlock>
+
+          <EventBlock
+            label="Component #3"
+            title="The Persistent Pipeline"
+            photo={IMG.mech3}
+            photoAlt="Multi-channel follow-up engine"
+          >
+            <p>
+              Every lead that doesn&apos;t book on the first touch gets rolled
+              into a multi-channel sequence: email, SMS, chat. Ongoing,
+              context-aware, adjusting based on what they click and when.
+            </p>
+            <p>
+              It runs until they book or opt out. Not a drip campaign. A
+              persistent system that treats every lead like a human being,
+              not a list entry.
+            </p>
+            <p className="font-display font-bold text-brand-ink">
+              Persistent without being pushy.
+            </p>
+          </EventBlock>
+
+          <EventBlock
+            label="Component #4"
+            title="The Growth Scoreboard"
+            photo={IMG.mech4}
+            photoAlt="Live performance dashboard"
+            reversed
+          >
+            <p>
+              Weekly lead quality scoring and conversion tracking. See which
+              sources bring the closers, which ones bring the ghosters, and
+              where your actual ROI lives.
+            </p>
+            <p>
+              No more guessing which content, channel, or campaign is
+              paying. You see it on Monday morning before your first call.
+            </p>
+            <p className="font-display font-bold text-brand-ink">
+              Know what drives revenue. Drop the rest.
+            </p>
+          </EventBlock>
+        </div>
+      </section>
+
+      {/* ─── BEFORE / AFTER ─────────────────────────────────────── */}
+      <section
+        className="py-20 md:py-28 px-6 text-white"
+        style={{ backgroundColor: '#1a1411' }}
+      >
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-brand-maroon text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-              Real Results
+            <p className="text-brand-gold font-bold uppercase tracking-[0.25em] text-xs md:text-sm mb-4">
+              Before &amp; After
             </p>
-            <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-brand-ink">
-              Campaigns I&apos;ve Actually Run
-            </h2>
-            <p className="text-brand-ink/65 mt-4 max-w-[52ch] mx-auto">
-              Real clients. Exact metrics. Numbers pulled from the dashboards, not the marketing deck.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="md:row-span-2">
-              <SocialProofCard
-                client="Elevated Diversity"
-                industry="Recruitment / HR Consulting"
-                metrics={[
-                  { value: '24%', label: 'increase in qualified leads' },
-                  { value: '15%', label: 'lower cost per lead' },
-                  { value: '38%', label: 'boost in website traffic' },
-                ]}
-                featured
-              />
-            </div>
-            <SocialProofCard
-              client="Health & Wellness with HBOT"
-              industry="Health / Wellness Consulting"
-              metrics={[
-                { value: '21%', label: 'growth in lead volume' },
-                { value: '27%', label: 'lower cost per acquisition' },
-                { value: '12%', label: 'spend efficiency gain' },
-              ]}
-            />
-            <SocialProofCard
-              client="Waxxpot"
-              industry="Service Business (Bookings)"
-              metrics={[
-                { value: '37%', label: 'increase in online bookings' },
-                { value: '42%', label: 'reduction in cost per acquisition' },
-                { value: '29%', label: 'boost in revenue' },
-              ]}
-            />
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ─── SOLUTION REVEAL ─────────────────────────────────────── */}
-      <AnimatedSection className="bg-white py-24 md:py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="max-w-3xl mb-16">
-            <p className="text-brand-maroon text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-              The Growth System
-            </p>
-            <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-brand-ink mb-6">
-              Your Calendar Fills While You Focus On Clients
-            </h2>
-            <hr className="rule-gold mb-8" />
-            <p className="text-brand-ink/75 text-base md:text-lg leading-relaxed max-w-[62ch]">
-              I built The Growth System specifically for consultants. It
-              combines instant lead response, AI-powered qualification, and
-              persistent follow-up into one engine that runs behind your
-              existing business. You keep your offer, your process, your
-              brand. You just get more qualified calls on your calendar
-              without doing the chasing.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-16">
-            {mechanisms.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ type: 'spring', stiffness: 100, damping: 20, delay: i * 0.06 }}
-                className="border-t-2 border-brand-ink/90 pt-6"
-              >
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span className="font-display font-extrabold text-brand-gold text-base tabular-nums">
-                    0{i + 1}
-                  </span>
-                  <h3 className="font-display font-extrabold text-xl md:text-2xl text-brand-ink leading-tight">
-                    {item.name}
-                  </h3>
-                </div>
-                <p className="text-brand-ink/70 text-base leading-relaxed max-w-[52ch]">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ─── BEFORE / AFTER ──────────────────────────────────────── */}
-      <AnimatedSection className="bg-brand-ink text-white py-24 md:py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-brand-gold text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-              The Shift
-            </p>
-            <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-white">
-              See The Transformation
+            <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1]">
+              The Transformation
             </h2>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-              className="border border-white/10 p-8 md:p-10"
+              className="border border-white/10 p-8 md:p-10 rounded-xl bg-white/[0.02]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/50 mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/50 mb-6">
                 Before
               </p>
               <ul className="space-y-4">
@@ -431,9 +407,9 @@ export default function ConsultantsPage() {
                     <XCircle
                       size={22}
                       weight="fill"
-                      className="text-white/25 shrink-0 mt-0.5"
+                      className="text-white/30 shrink-0 mt-0.5"
                     />
-                    <span className="text-white/70 leading-relaxed">
+                    <span className="text-white/75 leading-relaxed">
                       {item}
                     </span>
                   </li>
@@ -446,9 +422,9 @@ export default function ConsultantsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-              className="border border-brand-gold/30 bg-brand-gold/[0.06] p-8 md:p-10"
+              className="border border-brand-gold/40 bg-brand-gold/[0.06] p-8 md:p-10 rounded-xl"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-gold mb-6">
                 After The Growth System
               </p>
               <ul className="space-y-4">
@@ -459,37 +435,35 @@ export default function ConsultantsPage() {
                       weight="fill"
                       className="text-brand-gold shrink-0 mt-0.5"
                     />
-                    <span className="text-white leading-relaxed">
-                      {item}
-                    </span>
+                    <span className="text-white leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
             </motion.div>
           </div>
         </div>
-      </AnimatedSection>
+      </section>
 
-      {/* ─── MID CTA ─────────────────────────────────────────────── */}
-      <AnimatedSection className="bg-white py-16 md:py-20 px-6">
+      {/* ─── MID CTA ───────────────────────────────────────────── */}
+      <section className="bg-white py-16 md:py-20 px-6">
         <div className="max-w-3xl mx-auto flex flex-col items-center text-center">
-          <h3 className="font-display font-extrabold text-2xl md:text-3xl text-brand-ink mb-6 leading-tight">
+          <h3 className="font-display font-extrabold text-brand-ink text-[clamp(1.5rem,3vw,2.25rem)] mb-8 leading-tight">
             Ready To Fill Your Calendar On Autopilot?
           </h3>
           <CTAButton
-            text="See If You Qualify"
+            text="Apply For The Growth System Now"
+            subline="Only 3 Consultant Spots Open For May"
             href="/apply"
-            subtext="3 Consultant Spots Per Month"
           />
         </div>
-      </AnimatedSection>
+      </section>
 
       {/* ─── FAQ ─────────────────────────────────────────────────── */}
-      <AnimatedSection className="bg-brand-paper py-24 md:py-32 px-6">
+      <section className="bg-brand-paper py-20 md:py-24 px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-brand-maroon text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-              FAQ
+          <div className="text-center mb-12">
+            <p className="text-brand-maroon text-xs md:text-sm font-bold uppercase tracking-[0.25em] mb-4">
+              Questions Before You Apply
             </p>
             <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-brand-ink">
               Questions We Hear Before Every First Call
@@ -497,35 +471,43 @@ export default function ConsultantsPage() {
           </div>
           <FAQ items={faqItems} />
         </div>
-      </AnimatedSection>
+      </section>
 
-      {/* ─── FINAL CTA ───────────────────────────────────────────── */}
-      <AnimatedSection className="bg-brand-ink text-white py-24 md:py-32 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-brand-gold text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-            Last Step
-          </p>
-          <h2 className="font-display font-extrabold text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-white">
-            Stop Chasing Leads. Start Closing Them.
-          </h2>
-          <p className="text-white/70 text-lg mt-6 leading-relaxed max-w-[54ch] mx-auto">
-            Book a free strategy call. I&apos;ll review your lead flow,
-            show you where the biggest wins are, and map out a plan to fill
-            your calendar with qualified prospects.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-4">
-            <CTAButton
-              text="See If You Qualify"
-              href="/apply"
-              subtext="Limited To 3 Consultants Per Month"
-            />
-          </div>
+      {/* ─── FINAL SIGNOFF ───────────────────────────────────────── */}
+      <section className="bg-white py-24 md:py-32 px-6">
+        <Signoff
+          portrait={IMG.milosPortrait}
+          name="Milos"
+          title="Founder, The Snow Media"
+          intro={
+            <>
+              <p>
+                The great Alex Hormozi once said: &ldquo;The business that is
+                willing to respond the fastest, follow up the most, and care
+                the longest always wins.&rdquo;
+              </p>
+              <p>
+                That&apos;s exactly what The Growth System gives you. The
+                fastest first touch. The most persistent follow-up. The
+                cleanest qualifying gate. Built behind your existing practice
+                so you keep your offer, your voice, your relationships.
+              </p>
+              <p>
+                Go ahead and click the button below to apply. I&apos;ll
+                personally review your lead flow and tell you straight
+                whether this is a fit for your practice.
+              </p>
+              <p>Once the May spots are taken, this page closes until June.</p>
+              <p className="text-brand-ink/70">Excited to have you in,</p>
+            </>
+          }
+          ctaText="Apply For The Growth System Now"
+          ctaSubline="Limited To 3 Consultants Per Month"
+          ctaHref="/apply"
+        />
+      </section>
 
-          <p className="text-xs text-white/30 mt-20">
-            &copy; 2026 The Snow Media
-          </p>
-        </div>
-      </AnimatedSection>
+      <Footer />
     </main>
   )
 }

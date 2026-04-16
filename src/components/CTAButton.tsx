@@ -2,22 +2,21 @@
 
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { ArrowRight } from '@phosphor-icons/react'
 
 interface CTAButtonProps {
   text: string
+  subline?: string
   href: string
-  subtext?: string
-  variant?: 'maroon' | 'green'
   className?: string
+  size?: 'md' | 'lg'
 }
 
 export default function CTAButton({
   text,
+  subline,
   href,
-  subtext,
-  variant = 'maroon',
   className = '',
+  size = 'lg',
 }: CTAButtonProps) {
   const ref = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
@@ -30,8 +29,8 @@ export default function CTAButton({
     const rect = ref.current.getBoundingClientRect()
     const cx = rect.left + rect.width / 2
     const cy = rect.top + rect.height / 2
-    x.set((e.clientX - cx) * 0.12)
-    y.set((e.clientY - cy) * 0.12)
+    x.set((e.clientX - cx) * 0.1)
+    y.set((e.clientY - cy) * 0.1)
   }
 
   function handleMouseLeave() {
@@ -39,10 +38,9 @@ export default function CTAButton({
     y.set(0)
   }
 
-  const color =
-    variant === 'green'
-      ? 'bg-brand-green hover:bg-brand-green-hover'
-      : 'bg-brand-maroon hover:bg-brand-maroon-hover'
+  const padding = size === 'lg' ? 'py-6 px-12' : 'py-4 px-8'
+  const mainText = size === 'lg' ? 'text-xl md:text-3xl' : 'text-base md:text-xl'
+  const subText = size === 'lg' ? 'text-xs md:text-sm' : 'text-[10px] md:text-xs'
 
   return (
     <div
@@ -54,21 +52,22 @@ export default function CTAButton({
       <motion.a
         href={href}
         style={{ x: springX, y: springY }}
-        whileTap={{ scale: 0.98, y: 1 }}
-        className={`group relative inline-flex items-center justify-center gap-3 ${color} text-white font-display font-extrabold uppercase tracking-wide py-5 px-10 text-base md:text-lg rounded-md cursor-pointer w-full md:w-auto border-b-[3px] border-black/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_24px_-8px_rgba(154,50,61,0.45)] transition-all duration-200`}
+        whileTap={{ scale: 0.98 }}
+        className={`group block bg-brand-maroon hover:bg-brand-maroon-hover text-white text-center rounded-xl ${padding} cursor-pointer transition-colors duration-200 border-b-[3px] border-black/25`}
       >
-        <span>{text}</span>
-        <ArrowRight
-          size={22}
-          weight="bold"
-          className="transition-transform duration-200 group-hover:translate-x-1"
-        />
-      </motion.a>
-      {subtext && (
-        <div className="mt-3 bg-brand-gold/95 text-brand-ink text-xs md:text-sm font-semibold uppercase tracking-wider text-center py-2 px-4 rounded-sm border-b-2 border-brand-gold-dark">
-          {subtext}
+        <div
+          className={`font-display font-extrabold uppercase tracking-wide ${mainText} leading-[1.1]`}
+        >
+          {text}
         </div>
-      )}
+        {subline && (
+          <div
+            className={`${subText} font-sans font-normal uppercase tracking-[0.12em] text-white/85 mt-2 leading-tight`}
+          >
+            {subline}
+          </div>
+        )}
+      </motion.a>
     </div>
   )
 }
