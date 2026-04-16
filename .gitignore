@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.env
+.env.local
+# Temp files
+*.png
+*.yaml
+.playwright-cli/
+bing-results.yaml
+coaching_page.yaml

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brunson Review and Design Improvements</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a1a; line-height: 1.7; max-width: 800px; margin: 0 auto; padding: 48px 40px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  h2 { font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; border-bottom: 2px solid #FFB949; padding-bottom: 6px; }
+  h3 { font-size: 16px; font-weight: 700; margin-top: 24px; margin-bottom: 8px; color: #333; }
+  p { margin-bottom: 12px; font-size: 14px; }
+  .subtitle { color: #666; font-size: 14px; margin-bottom: 32px; }
+  .highlight { background: #FFF8E7; border-left: 3px solid #FFB949; padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+  .error { background: #FFF0F0; border-left: 3px solid #E53935; padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+  .success { background: #f0f9f0; border-left: 3px solid #4CAF50; padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th { background: #f5f5f5; text-align: left; padding: 8px 12px; font-weight: 600; border: 1px solid #e0e0e0; }
+  td { padding: 8px 12px; border: 1px solid #e0e0e0; vertical-align: top; }
+  ul, ol { margin: 8px 0 16px 24px; font-size: 14px; }
+  li { margin-bottom: 6px; }
+  .page-break { page-break-before: always; }
+  .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e0e0e0; color: #999; font-size: 11px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Brunson Review and Improvement Plan</h1>
+<p class="subtitle">Snow Media | April 16, 2026 | "Act as Russell Brunson" review + Design audit + Visual analysis</p>
+
+<h2>Part 1: Russell Brunson Review of V1 Pages</h2>
+<p>Pages reviewed as if Brunson himself was critiquing them. 10 issues identified, prioritized.</p>
+
+<h3>Issue 1: No Story (CRITICAL)</h3>
+<div class="error"><strong>Problem:</strong> Zero Epiphany Bridge on either page. The Big Domino section is a statement, not a story. "You just STATED the belief. You didn't make them feel it."</div>
+<p><strong>Fix applied:</strong> Added 3-4 paragraph origin story between problem agitation and solution reveal. Different story per niche. Backstory, wall, epiphany, transformation structure.</p>
+
+<h3>Issue 2: Headline Is Benefit-First, Should Be Curiosity-First</h3>
+<p><strong>Before:</strong> "Your Phones Ring After Hours. Nobody Answers. That Revenue Disappears Forever."</p>
+<p><strong>After:</strong> "How Contractors Are Recovering $15K+ Per Month in Lost Revenue Without Hiring a Single Person"</p>
+<p>The "how...without" formula creates a curiosity gap. They HAVE to scroll to find out.</p>
+
+<h3>Issue 3: No Attractive Character</h3>
+<p><strong>Problem:</strong> No name, no photo, no "I" on either page. Could be from any agency.</p>
+<p><strong>Fix applied:</strong> Added Milos's name, title, avatar placeholder. First-person voice throughout ("I built..." not "We built...").</p>
+
+<h3>Issue 4: Solution Reveal Is Features, Not Secrets</h3>
+<table>
+  <tr><th>Before (Feature)</th><th>After (Named Mechanism)</th></tr>
+  <tr><td>24/7 AI Call Answering</td><td>The After-Hours Revenue Recovery System</td></tr>
+  <tr><td>Automated Estimate Follow-Up</td><td>The Silent Closer</td></tr>
+  <tr><td>Lead Recovery Engine</td><td>The Dormant Revenue Reactivator</td></tr>
+  <tr><td>Real-Time Dashboard</td><td>The Growth Scoreboard</td></tr>
+</table>
+<p>Named mechanisms signal proprietary systems. Features are commodities.</p>
+
+<h3>Issue 5: Social Proof in Wrong Position</h3>
+<p><strong>Before:</strong> Problem &rarr; Belief &rarr; Solution &rarr; CTA &rarr; Social Proof</p>
+<p><strong>After:</strong> Problem &rarr; Belief &rarr; <strong>Social Proof</strong> &rarr; Solution &rarr; CTA</p>
+<p>You earn the right to present the solution by proving you've done it for others first.</p>
+
+<h3>Issue 6: Subheadline Gives Away the Answer</h3>
+<p><strong>Before:</strong> "Discover the system that captures, follows up, and books every lead automatically."</p>
+<p><strong>After:</strong> "Discover the system 107 service businesses use to stop losing jobs to voicemail. Setup takes 30 minutes."</p>
+<p>Tell them the RESULT and EASE. Hide the HOW. The "how" keeps them on the page.</p>
+
+<h3>Issue 7: No Before/After Transformation</h3>
+<p><strong>Fix applied:</strong> Added two-column Before/After section with specific line items showing the contrast.</p>
+
+<h3>Issue 8: CTA Text Could Be Stronger</h3>
+<p><strong>Before:</strong> "Apply for Your Free Strategy Call" (implies you might say no)</p>
+<p><strong>After:</strong> "See If You Qualify" (softer, curiosity-driven)</p>
+
+<h3>Issue 9: FAQ Title Is Generic</h3>
+<p><strong>Before:</strong> "Common Questions"</p>
+<p><strong>After:</strong> "Questions We Hear Before Every First Call"</p>
+
+<h3>Issue 10: No Exit-Intent Mechanism</h3>
+<p><strong>Fix applied:</strong> Created ExitIntentPopup component. Fires on mouse leave (5-second delay, once per session). Alternate offer: free guide with email capture.</p>
+
+<h2 class="page-break">Part 2: What Brunson Pages ACTUALLY Look Like</h2>
+
+<div class="error">
+  <strong>Critical Finding:</strong> Our V1 pages used an all-dark zinc-950 background. Brunson's actual pages use a dark hero ONLY, then WHITE background for 80%+ of the page. We were in "two different worlds."
+</div>
+
+<h3>What We Built vs What Brunson Actually Does</h3>
+<table>
+  <tr><th>What We Built</th><th>What Brunson Does</th></tr>
+  <tr><td>All-dark zinc-950 background</td><td>Dark hero, then WHITE background for 80% of page</td></tr>
+  <tr><td>No imagery at all</td><td>Photos on nearly every scroll. Real people, real events.</td></tr>
+  <tr><td>Minimal "developer" aesthetic</td><td>Long-form, content-rich, editorial feel</td></tr>
+  <tr><td>Clean modern cards</td><td>Simple white sections with big text, inline images</td></tr>
+  <tr><td>Subtle muted tones</td><td>Bold colors: dark red/maroon CTAs, green accent, gold highlights</td></tr>
+  <tr><td>Short punchy sections</td><td>Long-form storytelling with multiple paragraphs</td></tr>
+  <tr><td>Gold/amber CTA buttons</td><td>Red/maroon buttons (rgb 154,50,61) or green (rgb 15,87,69)</td></tr>
+  <tr><td>Abstract mechanism names in cards</td><td>Personal, conversational copy that reads like a letter</td></tr>
+</table>
+
+<h3>Brunson's Actual Design System (from Inner Circle + 2CCX screenshots)</h3>
+<ul>
+  <li><strong>Hero:</strong> Dark background (near-black), gold accents, VSL video center stage</li>
+  <li><strong>Below hero:</strong> White background, black text. This is where 80% of content lives.</li>
+  <li><strong>Headlines:</strong> Montserrat 800 weight, large, dark. Sometimes serif for pull-quotes.</li>
+  <li><strong>Body:</strong> Open Sans, regular weight, dark gray/black text on white</li>
+  <li><strong>CTA Buttons:</strong> Red/maroon (primary) or dark green (first CTA), NOT gold. Gold is accent only.</li>
+  <li><strong>Photos:</strong> Real headshots, group photos, event photos. Inline with text, not in cards.</li>
+  <li><strong>Video testimonials:</strong> Grid layout (video left, name below), multiple per section</li>
+  <li><strong>Stats bar:</strong> Big numbers with labels (e.g., "401 Two Comma Club Winners")</li>
+  <li><strong>Copy:</strong> Long-form personal letter style. Paragraphs, bold inline text, first-person</li>
+  <li><strong>Scarcity:</strong> "ONLY 6 SPOTS LEFT" in bright text above CTA. Structural, not timer-based.</li>
+</ul>
+
+<h2>Part 3: Redesign Requirements</h2>
+
+<div class="highlight">
+  <strong>The redesign keeps ALL Brunson structural elements (copy, section order, funnel flow) but completely overhauls the visual layer to match his actual pages.</strong>
+</div>
+
+<h3>Visual Changes Needed</h3>
+<ol>
+  <li>Dark hero section ONLY. Everything below switches to white/light background.</li>
+  <li>CTA buttons change from gold to red/maroon (primary) with white text.</li>
+  <li>Gold accent stays for labels, decorative elements, pre-headlines only.</li>
+  <li>Real photography: Milos headshot (mandatory), system mockup/dashboard visual, placeholder images for future event/client photos.</li>
+  <li>Body copy on white background with dark text. Long-form editorial feel.</li>
+  <li>Social proof cards: white cards with subtle shadow on light background, not dark cards.</li>
+  <li>FAQ: clean on white background, not dark.</li>
+  <li>Stats bar with big numbers, visible on light background.</li>
+  <li>Montserrat stays for headlines. Add Open Sans for body text.</li>
+</ol>
+
+<h3>What Stays the Same</h3>
+<ul>
+  <li>All copy (headlines, Epiphany Bridge, Big Domino, FAQ, CTAs)</li>
+  <li>Section order (Hero, Problem, Story, Big Domino, Social Proof, Solution, Before/After, CTA, FAQ, Final CTA)</li>
+  <li>Named mechanisms (After-Hours Revenue Recovery System, Silent Closer, etc.)</li>
+  <li>Exit-intent popup</li>
+  <li>Application form and thank-you page</li>
+  <li>No navigation, no footer links</li>
+  <li>Structural scarcity text</li>
+</ul>
+
+<div class="footer">Snow Media Research | April 2026</div>
+</body>
+</html>
